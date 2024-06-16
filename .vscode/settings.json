@@ -1,0 +1,7 @@
+{
+  "IDX.aI.enableCodebaseIndexing": true,
+  "IDX.aI.enableInlineCompletion": true,
+  "files.exclude": {
+    "**/.git": false
+  }
+}
