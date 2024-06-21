@@ -6,14 +6,14 @@ import Link from "next/link";
 import { auth } from "@/auth";
 import Drawer from "./drawer";
 import UserButton from "../auth/user-button";
-import { FaCartShopping } from "react-icons/fa6";
-import { getCart } from "@/data/cart";
-import CartCounterBadge from "../cart/cartCounterBadge";
+import { getCartWithProduct } from "@/data/cart";
+import CartDrawer from "./cartDrawer";
+
 
 const Navbar = async() => {
   const session = await auth()
   const user = session?.user;
-  var carts =await getCart(user?.id as string);
+  const Cart = await getCartWithProduct(user?.id as string);
   const role = user?.role;
   const menuContent=(
     <>
@@ -54,13 +54,9 @@ const Navbar = async() => {
        <div className="hidden md:flex items-center justify-between">
           {menuContent}
         </div>
-        {user && <Link href="/cart" className="d-center">
-          <CartCounterBadge id={user.id as string} >
-            <FaCartShopping className="size-4 mr-4" />
-          </CartCounterBadge>
-        </Link>}
+        {user &&  <CartDrawer cart={Cart} />}
         <Suspense fallback={<FaUser className="size-4" />}>
-          {user && <UserButton user={user} cart={carts} />}
+          {user && <UserButton user={user} cart={Cart} />}
         </Suspense>
       </div>
    </NavBarMenu>

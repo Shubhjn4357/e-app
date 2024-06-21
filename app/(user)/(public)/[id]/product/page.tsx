@@ -7,7 +7,6 @@ import ProductDetail from '@/components/product/productDetail';
 const ProductPage = async({params}:{params:{id:string}}) => {
     const { id } = params;
   const product = await getProductById(id)
-  console.log(product)
   if (product) {
     return (
       <div className=" grid md:grid-cols-2 p-4 max-w-screen-lg h-full mx-auto space-y-10">

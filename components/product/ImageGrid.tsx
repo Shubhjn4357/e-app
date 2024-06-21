@@ -12,7 +12,7 @@ import { Skeleton } from '../ui/skeleton';
   return <div className="grid grid-cols-4 gap-4 h-min">
     <motion.div initial={{ opacity: 0,scale:0 }} animate={{ opacity: 1,scale:1, transition: { duration: 0.3, type: "spring" } }} className="col-span-4 relative aspect-square max-w-96 h-auto overflow-hidden cursor-pointer">
       <Suspense fallback={<Skeleton className='size-96 rounded-xl' />}>
-        <NextImage className=' rounded-xl object-cover' fill src={selectedImage.file} alt={images[0].id} />
+        <NextImage sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className=' rounded-xl object-cover' fill src={selectedImage.file} alt={images[0].id} />
       </Suspense>
     </motion.div>
     <Suspense fallback={
@@ -24,7 +24,7 @@ import { Skeleton } from '../ui/skeleton';
     </>}>
       {images.map((image, key) => {
         return <motion.div whileHover={{ scale: 0.9, transition: { duration: 0.3, type: "spring" } }} key={key} className="relative col-span-1 aspect-square overflow-hidden cursor-pointer" >
-          <NextImage className='rounded-xl object-cover' fill src={image.file} alt={image.id} onClick={() => setSelectedImage(image)} />
+          <NextImage sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className='rounded-xl object-cover' fill src={image.file} alt={image.id} onClick={() => setSelectedImage(image)} />
           </motion.div>
       })}
     </Suspense>

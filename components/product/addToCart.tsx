@@ -14,8 +14,13 @@ const AddToCart = ({id}:{id:string}) => {
     const AddProductToCart = () => {
         startTranstion(async () => {
             if (user) {
-                addProductToCart(user.id as string,id,1)
-                setSuccess(true)
+                addProductToCart(user.id as string,id,1).then(() => {
+                    toast("Added to cart")
+                    setSuccess(true)
+                    setTimeout(() => {
+                        setSuccess(false)
+                    }, 3000)
+                })
             }
             else {
                 toast("Please login to add to cart")
@@ -23,7 +28,6 @@ const AddToCart = ({id}:{id:string}) => {
         })
         
     }
-    console.log({ success })
   return (
       <Button variant="secondary" disabled={isPending} size="lg" className='d-center' onClick={AddProductToCart}>
           {(!success && isPending) && <span className='text-info-500 flex gap-2'><AiOutlineLoading className='animate-spin'/>Adding...</span>}

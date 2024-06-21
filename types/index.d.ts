@@ -1,4 +1,4 @@
-import { Image, Product, Review } from "@prisma/client";
+import { Cart, Image, Product, Review } from "@prisma/client";
 
 declare const MAIL_ERROR_CODES_BY_KEY: {
     readonly missing_required_field: 422;
@@ -28,3 +28,4 @@ export type order = "asc" | "desc"
 
 export type ProductsWithImage = Product & { image: Image[] };
 export type ProductsWithImageAndReview = Product & { image: Image[],reviews:Review[] };
+export type ProductsWithCart =  Cart & {product:ProductsWithImage};

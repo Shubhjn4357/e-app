@@ -12,6 +12,7 @@ import { LogoutButton } from "./logout-button";
 import ThemeSwitch from "../themeSwitch";
 import { ExtendedUser } from "@/types/next-auth";
 import { Cart } from "@prisma/client";
+import Link from "next/link";
 const UserButton = ({user,cart}:{user:ExtendedUser,cart:Cart[]}) => {
   return (
     <DropdownMenu>
@@ -24,14 +25,15 @@ const UserButton = ({user,cart}:{user:ExtendedUser,cart:Cart[]}) => {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-[40px]" align="end">
-        <DropdownMenuItem>
-          <FaCartShopping className="size-4 mr-4" />
-          Cart
-          <span className="text-sm font-bold rounded-full bg-destructive px-2 ml-2">{cart.length}</span>
-        </DropdownMenuItem>
+          <Link href="/cart">
+            <DropdownMenuItem>
+                <FaCartShopping className="size-4 mr-4" />
+                Cart
+                <span className="text-sm font-bold rounded-full bg-destructive px-2 ml-2">{cart.length}</span>
+            </DropdownMenuItem>
+          </Link>
         <DropdownMenuItem >
-          <ThemeSwitch/>
-          DarkMode
+          <ThemeSwitch label/>
         </DropdownMenuItem>
         {user && <LogoutButton>
           <DropdownMenuItem>

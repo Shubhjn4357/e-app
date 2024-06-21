@@ -10,19 +10,19 @@ children: React.ReactNode;
 
 const CardWrapper = ({ children ,title,description,footer,className}:CardWrapper) => {
   return (
-    <Card className={className}>
-        <CardHeader>
-              <CardTitle>{title}</CardTitle>
-              <CardDescription>
-                  {description}
-              </CardDescription>
-          </CardHeader>
-      <CardContent>
+    <Card >
+      {(title||description) &&<CardHeader>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>
+          {description}
+        </CardDescription>
+      </CardHeader>}
+      <CardContent className={className}>
         {children}
           </CardContent>
-          <CardFooter>
+         { footer && <CardFooter>
             {footer}
-          </CardFooter>
+          </CardFooter>}
     </Card>
   );
 }

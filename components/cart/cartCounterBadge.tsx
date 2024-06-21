@@ -1,11 +1,9 @@
-import { getCart } from '@/data/cart';
 import React from 'react'
 
- const CartCounterBadge = async({id,children}:{id:string,children:React.ReactNode}) => {
-    const carts =await getCart(id);
+ const CartCounterBadge = async({length,children}:{length:number,children:React.ReactNode}) => {
     return (<div className='relative'>
        {children}
-       {carts.length > 0 && <span className="absolute -top-2 -right-1 text-xs  font-bold rounded-full bg-destructive px-2">{carts.length}</span>}
+       {length > 0 && <span className="absolute -top-2 -right-1 text-xs  font-bold rounded-full bg-destructive px-2">{length}</span>}
   </div>
   )
 }

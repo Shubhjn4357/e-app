@@ -17,6 +17,7 @@ interface DrawerProps {
   headerDescription?: string;
   footer?: React.ReactNode;
   asChild?: boolean;
+  className?: string;
   side?: "left" | "right" | "top" | "bottom";
 }
 const Drawer = ({
@@ -26,6 +27,7 @@ const Drawer = ({
   headerDescription,
   closeIcon,
   children,
+  className,
   asChild = false,
   footer,
 }: DrawerProps) => {
@@ -35,15 +37,15 @@ const Drawer = ({
       <SheetContent
         side={side}
         closeIcon={closeIcon}
-        className="flex flex-col justify-between"
+        className={className}
       >
-        <div>
+        <>
           <SheetHeader>
             <SheetTitle>{headerTitle}</SheetTitle>
             <SheetDescription>{headerDescription}</SheetDescription>
           </SheetHeader>
           {children}
-        </div>
+        </>
         {footer && <SheetFooter>{footer}</SheetFooter>}
       </SheetContent>
     </Sheet>
