@@ -33,25 +33,23 @@ export default async function RootLayout({
   const session = await auth()
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className}`}>
+      <body className={`${inter.className} min-h-dvh overflow-x-hidden bg-background text-foreground overflow-y-scroll`}>
           <Suspense fallback={<Loading />}>
             <Blob1 />
             <Blob2 />
-             <Provider session={session}>
-            <div className="min-h-dvh overflow-x-hidden bg-background backdrop-blur-lg overflow-y-scroll">
-              {children}
-            </div>
-            <Toaster position="top-right"
-              toastOptions={{ 
-                classNames: {
-                  error: "bg-red-400",
-                  success: "bg-green-400 text-gray-700",
-                  warning: "bg-yellow-400 text-gray-700",
-                  info: "bg-blue-400",
-                },
-              }}
-              />
-              </Provider>
+            <Provider session={session}>
+                {children}
+                <Toaster position="top-right"
+                  toastOptions={{ 
+                    classNames: {
+                      error: "bg-red-400",
+                      success: "bg-green-400 text-gray-700",
+                      warning: "bg-yellow-400 text-gray-700",
+                      info: "bg-blue-400",
+                    },
+                  }}
+                  />
+                </Provider>
           </Suspense>
       </body>
     </html>

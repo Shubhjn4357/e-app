@@ -7,7 +7,9 @@ const Provider = ({children,session}: SessionProviderProps) => {
     <SessionProvider session={session}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <TooltipProvider>
+          <div className="backdrop-blur-lg bg-transparent">
             {children}
+            </div>
         </TooltipProvider>
         </ThemeProvider>
     </SessionProvider>
